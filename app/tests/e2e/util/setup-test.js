@@ -37,7 +37,7 @@ module.exports = () => {
     exeDir = path.dirname( appInfo.executable );
     appData = exeDir;
     if ( process.platform === 'darwin' ) {
-      appData = require( 'os' ).homedir() + '/Library/Application Support/FreeSO Launcher';
+      appData = require( 'os' ).homedir() + '/Library/Application Support/DiscoSO Launcher';
     }
     if ( process.platform === 'linux' ) {
       appData = require( 'os' ).homedir() + '/.fsolauncher';
