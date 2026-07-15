@@ -31,7 +31,7 @@ class FSOInstaller {
     const textPath = process.platform === 'win32' ? this.path : this.path.replace( appData + '/', '' );
     this.fsolauncher.IPC.addProgressItem(
       `FSOProgressItem${this.id}`,
-      'DiscoSO Client',
+      'FreeSO Client',
       `${locale.current.INS_IN} ${textPath}`,
       message,
       percentage
@@ -71,7 +71,7 @@ class FSOInstaller {
     this.createProgressItem( locale.current.INS_SOURCES, 0 );
     const from = await this.getZipUrl();
     if ( ! from ) {
-      throw new Error( 'Could not obtain DiscoSO release information...' );
+      throw new Error( 'Could not obtain FreeSO release information...' );
     }
     this.dl = download( { from, to: this.tempPath } );
 
@@ -226,7 +226,7 @@ class FSOInstaller {
     this.haltProgress = true;
     this.fsolauncher.IPC.stopProgressItem( 'FSOProgressItem' + this.id );
     this.createProgressItem(
-      strFormat( locale.current.FSO_FAILED_INSTALLATION, 'DiscoSO' ), 100
+      strFormat( locale.current.FSO_FAILED_INSTALLATION, 'FreeSO' ), 100
     );
   }
 
