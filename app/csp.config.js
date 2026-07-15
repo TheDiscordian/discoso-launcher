@@ -5,6 +5,9 @@ const directives = {
   'style-src': [ "'self'", "'unsafe-inline'" ],
   'connect-src': [
     "'self'",
+    'https://tso.thedisco.zone',
+    'https://*.thedisco.zone',
+    'wss://*.thedisco.zone',
     'wss://*.freeso.org',
     'wss://freeso.org',
     'https://*.freeso.org',

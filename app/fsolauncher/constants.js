@@ -100,7 +100,7 @@ const darkThemes = [
 ];
 const components = {
   'TSO': 'The Sims Online',
-  'FSO': 'FreeSO',
+  'FSO': 'DiscoSO',
   'OpenAL': 'OpenAL',
   'NET': '.NET Framework',
   'RMS': 'Remesh Package',
