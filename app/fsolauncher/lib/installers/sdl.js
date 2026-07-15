@@ -63,7 +63,7 @@ class SDLInstaller {
     this.createProgressItem( locale.current.INS_SDL_DESCR_LONG, 100 );
     return new Promise( ( resolve, reject ) => {
       // SDL2 installation command for Debian-based systems
-      const command = isArch ? 'pacman -Syu --noconfirm sdl2' : 'apt-get update && apt-get install -y libsdl2-2.0-0';
+      const command = isArch ? 'pacman -Sy --noconfirm sdl2' : 'apt-get update && apt-get install -y libsdl2-2.0-0';
 
       sudo.exec( command, ( error, stdout, stderr ) => {
         if ( error ) {

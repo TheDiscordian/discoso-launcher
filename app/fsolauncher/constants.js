@@ -23,6 +23,7 @@ const linuxDistro = ( () => {
 const isArch = linuxDistro.id === 'arch' || linuxDistro.like === 'arch';
 const isDebian = linuxDistro.id === 'debian' || linuxDistro.like === 'debian';
 const linuxLibPath = ( () => {
+  if ( isArch ) return '/usr/lib'; // Arch/CachyOS: libs live in /usr/lib, not a Debian multiarch subdir
   const arch = os.arch();
   switch ( arch ) {
   case 'x64':
