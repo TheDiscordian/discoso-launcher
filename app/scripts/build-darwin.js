@@ -5,7 +5,7 @@ const packager = require( '@electron/packager' ).packager,
   try {
     await packager( {
       dir: '.',
-      name: 'FreeSO Launcher',
+      name: 'DiscoSO Launcher',
       out: '../release',
       platform: 'darwin',
       arch: 'universal',

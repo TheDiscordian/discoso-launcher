@@ -42,7 +42,7 @@ const linuxLibPath = ( () => {
 const homeDir = os.homedir();
 const appData = ( () => {
   if ( process.platform === 'darwin' ) {
-    return `${homeDir}/Library/Application Support/FreeSO Launcher`;
+    return `${homeDir}/Library/Application Support/DiscoSO Launcher`;
   }
   if ( process.platform === 'linux' ) {
     return `${homeDir}/.fsolauncher`;
@@ -109,12 +109,12 @@ const components = {
   'SDL': 'SDL2'
 };
 const versionChecks = {
-  remeshPackageUrl: 'https://beta.freeso.org/RemeshPackage',
-  updatesUrl: 'https://beta.freeso.org/UpdateCheck',
+  remeshPackageUrl: 'https://tso.thedisco.zone/launcher/RemeshPackage',
+  updatesUrl: 'https://tso.thedisco.zone/launcher/UpdateCheck',
   interval: 5 * 60 * 1000 // every 5 minutes
 };
 const links = {
-  updateWizardUrl: 'https://beta.freeso.org/update',
+  updateWizardUrl: 'https://tso.thedisco.zone/#play',
   repoNewIssueUrl: 'https://github.com/ItsSim/fsolauncher/issues/new/choose',
   repoViewIssuesUrl: 'https://github.com/ItsSim/fsolauncher/issues',
   repoDocsUrl: 'https://github.com/ItsSim/fsolauncher/wiki',
@@ -123,20 +123,20 @@ const links = {
 const releases = {
   simitoneUrl: 'https://api.github.com/repos/riperiperi/Simitone/releases/latest',
   fsoGithubUrl: 'https://api.github.com/repos/riperiperi/FreeSO/releases/latest',
-  fsoApiUrl: 'https://api.freeso.org/userapi/update/beta',
+  fsoApiUrl: '',
 };
 const resourceCentral = {
-  'TheSimsOnline': 'https://beta.freeso.org/LauncherResourceCentral/TheSimsOnline',
-  'FreeSO': 'https://beta.freeso.org/LauncherResourceCentral/FreeSO',
-  '3DModels': 'https://beta.freeso.org/LauncherResourceCentral/3DModels',
-  'Simitone': 'https://beta.freeso.org/LauncherResourceCentral/Simitone',
-  'Mono': 'https://beta.freeso.org/LauncherResourceCentral/Mono',
-  'MacExtras': 'https://beta.freeso.org/LauncherResourceCentral/MacExtras',
-  'SDL': 'https://beta.freeso.org/LauncherResourceCentral/SDL',
-  'WS': 'https://beta.freeso.org/LauncherResourceCentral/ws',
-  'TrendingLots': 'https://beta.freeso.org/LauncherResourceCentral/TrendingLots',
-  'Scenarios': 'https://beta.freeso.org/LauncherResourceCentral/Scenarios',
-  'Blog': 'https://beta.freeso.org/LauncherResourceCentral/Blog'
+  'TheSimsOnline': 'https://archive.org/download/tso-fileplanet/TSO_Installer_v1.1239.1.0.zip',
+  'FreeSO': 'https://tso.thedisco.zone/site/downloads/freeso-client.zip',
+  '3DModels': 'https://tso.thedisco.zone/launcher/remeshes.zip',
+  'Simitone': '',
+  'Mono': 'https://download.mono-project.com/archive/6.12.0/macos-10-universal/MonoFramework-MDK-6.12.0.206.macos10.xamarin.universal.pkg',
+  'MacExtras': 'https://tso.thedisco.zone/launcher/macextras.zip',
+  'SDL': 'https://github.com/libsdl-org/SDL/releases/download/release-2.30.9/SDL2-2.30.9.dmg',
+  'WS': '',
+  'TrendingLots': 'https://tso.thedisco.zone/launcher/TrendingLots',
+  'Scenarios': 'https://tso.thedisco.zone/launcher/Scenarios',
+  'Blog': 'https://tso.thedisco.zone/launcher/Blog'
 };
 const temp = {
   'FSO': `${appData}/temp/artifacts-freeso-%s.zip`,

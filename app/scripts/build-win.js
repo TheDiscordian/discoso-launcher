@@ -5,7 +5,7 @@ const packager = require( '@electron/packager' ).packager,
   try {
     await packager( {
       dir: '.',
-      name: 'fsolauncher',
+      name: 'DiscoSO Launcher',
       out: '../release',
       platform: 'win32',
       arch: 'ia32',
@@ -14,11 +14,11 @@ const packager = require( '@electron/packager' ).packager,
         unpackDir: '{fsolauncher-ui/images,fsolauncher-ui/sounds,fsolauncher-ui/fonts}',
       },
       overwrite: true,
-      appCopyright: 'Copyright (C) FreeSO. All rights reserved.',
+      appCopyright: 'DiscoSO. FreeSO is (C) its authors, MPL-2.0.',
       win32metadata: {
-        CompanyName: 'FreeSO.org',
+        CompanyName: 'DiscoSO',
         'requested-execution-level': 'requireAdministrator',
-        FileDescription: 'FreeSO Launcher',
+        FileDescription: 'DiscoSO Launcher',
       },
       derefSymlinks: true
     } );
