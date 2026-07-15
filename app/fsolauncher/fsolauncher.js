@@ -56,7 +56,7 @@ class FSOLauncher {
       this.window.on( 'minimize', () => {
         if ( ! this.minimizeReminder ) {
           Modal.sendNotification(
-            'FreeSO Launcher',
+            'DiscoSO Launcher',
             locale.current.MINIMIZE_REMINDER,
             null, null, this.isDarkMode()
           );
@@ -694,7 +694,7 @@ class FSOLauncher {
     } else {
       // Use well-known paths.
       if ( [ 'darwin', 'linux' ].includes( process.platform ) ) {
-        // For darwin, everything goes to ~/Library/Application Support/FreeSO Launcher/GameComponents
+        // For darwin, everything goes to ~/Library/Application Support/DiscoSO Launcher/GameComponents
         // and not ~/Documents, to avoid iCloud sync issues
         return appData + '/GameComponents/' + this.getPrettyName( componentCode );
       }

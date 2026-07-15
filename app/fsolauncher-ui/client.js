@@ -19,13 +19,20 @@ let ociPickFolder;
 let ociConfirm;
 
 ( () => {
-  const parsedWsUrl = new URL( getPugVar( 'ws-url' ) );
-  const baseWsUrl = `${parsedWsUrl.protocol}//${parsedWsUrl.hostname}${parsedWsUrl.port ? ':' + parsedWsUrl.port : ''}`;
-  const socket = window.io( baseWsUrl, {
-    path: parsedWsUrl.pathname,
-    reconnectionAttempts: 8,
-    reconnectionDelay: 2000
-  } );
+  // DiscoSO: WS live-status is disabled (no socket server yet). Stub so the UI still loads.
+  const wsUrlStr = getPugVar( 'ws-url' );
+  let socket;
+  if ( wsUrlStr ) {
+    const parsedWsUrl = new URL( wsUrlStr );
+    const baseWsUrl = `${parsedWsUrl.protocol}//${parsedWsUrl.hostname}${parsedWsUrl.port ? ':' + parsedWsUrl.port : ''}`;
+    socket = window.io( baseWsUrl, {
+      path: parsedWsUrl.pathname,
+      reconnectionAttempts: 8,
+      reconnectionDelay: 2000
+    } );
+  } else {
+    socket = { on: () => {}, off: () => {}, emit: () => {}, close: () => {}, connect: () => {}, disconnect: () => {} };
+  }
 
   const clickAudio = new window.Howl( { src: 'sounds/click.wav', volume: 0.4 } );
   const modalAudio = new window.Howl( { src: 'sounds/modal.wav', volume: 0.4 } );

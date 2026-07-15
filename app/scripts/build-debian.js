@@ -7,7 +7,7 @@ async function packageAndCreateDebian( arch ) {
     // Package your Electron app for a specific architecture
     const appPaths = await packager( {
       dir: '.',
-      name: 'FreeSO Launcher',
+      name: 'DiscoSO Launcher',
       out: '../release',
       platform: 'linux',
       arch,
@@ -29,18 +29,18 @@ async function packageAndCreateDebian( arch ) {
       arch: arch === 'x64' ? 'amd64' : 'arm64',
       icon: './beta.png',
       categories: [ 'Games' ],
-      bin: 'FreeSO Launcher',
-      productName: 'FreeSO Launcher',
+      bin: 'DiscoSO Launcher',
+      productName: 'DiscoSO Launcher',
       section: 'games',
       homepage: 'https://freeso.org',
       genericName: 'Launcher',
-      description: 'FreeSO Launcher',
+      description: 'DiscoSO Launcher',
       productDescription: 'Install, configure, and launch FreeSO with ease'
     } );
 
     const version = require( '../package.json' ).version;
     const originalDebName = `../release/fsolauncher_${version}_${arch === 'x64' ? 'amd64' : 'arm64'}.deb`;
-    const newDebName = '../release/FreeSO Launcher.deb';
+    const newDebName = '../release/DiscoSO Launcher.deb';
 
     // Rename the Debian package
     await require( 'fs-extra' ).rename( originalDebName, newDebName );

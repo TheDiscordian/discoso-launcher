@@ -173,6 +173,8 @@ class FSOInstaller {
    * @returns {Promise<string>} A promise that resolves with the URL of the zip.
    */
   async getZipUrl() {
+    // DiscoSO: always install our pinned, pre-configured client.
+    if ( resourceCentral.FreeSO ) return resourceCentral.FreeSO;
     let url;
     try {
       const apiReleaseInfo = await this.getFreeSOApiReleaseInfo();
