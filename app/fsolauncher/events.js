@@ -115,7 +115,7 @@ class Events {
    */
   onSocketMessage( e, response ) {
     if ( this.fsolauncher.userSettings.Launcher.DesktopNotifications === '1' ) {
-      Modal.sendNotification( 'FreeSO Announcement',
+      Modal.sendNotification( 'DiscoSO Announcement',
         response[ 0 ],
         response[ 1 ],
         null, this.fsolauncher.isDarkMode() );

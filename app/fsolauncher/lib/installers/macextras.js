@@ -14,7 +14,7 @@ class MacExtrasInstaller {
    * @param {string} path The path to the installation directory.
    * @param {string} parentComponent The name of the parent component.
    */
-  constructor( fsolauncher, path, parentComponent = 'FreeSO' ) {
+  constructor( fsolauncher, path, parentComponent = 'DiscoSO' ) {
     this.fsolauncher = fsolauncher;
     this.id = Math.floor( Date.now() / 1000 );
     this.path = path;
@@ -66,6 +66,11 @@ class MacExtrasInstaller {
    *  Replace MonoGame.Framework.dll.config on Arm Linux
    */
   armPatch() {
+    // DiscoSO: make the launch scripts executable (some zips lose the +x bit)
+    const _fs = require( 'fs-extra' );
+    for ( const _f of [ 'freeso.command', 'freeso-linux.command', 'freeso3d.command' ] ) {
+      try { _fs.chmodSync( `${this.path}/${_f}`, 0o755 ); } catch ( _e ) { /* file may not exist */ }
+    }
     if ( process.platform == 'linux' && process.arch.startsWith( 'arm' ) ) {
       // This file is relatively small so it's not really worth creating a new file just for it
       fs.writeFileSync( `${this.path}/MonoGame.Framework.dll.config`,

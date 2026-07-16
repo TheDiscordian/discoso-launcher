@@ -112,7 +112,7 @@ module.exports = ( name, fsolauncher ) => [
         type: 'separator'
       },
       {
-        label: 'Official FreeSO Website',
+        label: 'Official DiscoSO Website',
         click: () => shell.openExternal( locale.current.WEB_URL )
       }
     ]

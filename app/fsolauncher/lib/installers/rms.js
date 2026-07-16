@@ -14,7 +14,7 @@ class RMSInstaller {
    * @param {string} path The path to install to.
    * @param {string} parentComponent The name of the parent component.
    */
-  constructor( fsolauncher, path, parentComponent = 'FreeSO' ) {
+  constructor( fsolauncher, path, parentComponent = 'DiscoSO' ) {
     this.fsolauncher = fsolauncher;
     this.id = Math.floor( Date.now() / 1000 );
     this.path = path;

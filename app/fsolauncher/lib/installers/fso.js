@@ -18,7 +18,7 @@ class FSOInstaller {
     this.path = path;
     this.haltProgress = false;
     this.tempPath = strFormat( temp.FSO, this.id );
-    this.dl = download( { from: resourceCentral.FreeSO, to: this.tempPath } );
+    this.dl = download( { from: resourceCentral.DiscoSO, to: this.tempPath } );
   }
 
   /**
@@ -31,7 +31,7 @@ class FSOInstaller {
     const textPath = process.platform === 'win32' ? this.path : this.path.replace( appData + '/', '' );
     this.fsolauncher.IPC.addProgressItem(
       `FSOProgressItem${this.id}`,
-      'FreeSO Client (from GitHub)',
+      'DiscoSO Client',
       `${locale.current.INS_IN} ${textPath}`,
       message,
       percentage
@@ -174,7 +174,7 @@ class FSOInstaller {
    */
   async getZipUrl() {
     // DiscoSO: always install our pinned, pre-configured client.
-    if ( resourceCentral.FreeSO ) return resourceCentral.FreeSO;
+    if ( resourceCentral.DiscoSO ) return resourceCentral.DiscoSO;
     let url;
     try {
       const apiReleaseInfo = await this.getFreeSOApiReleaseInfo();
@@ -226,7 +226,7 @@ class FSOInstaller {
     this.haltProgress = true;
     this.fsolauncher.IPC.stopProgressItem( 'FSOProgressItem' + this.id );
     this.createProgressItem(
-      strFormat( locale.current.FSO_FAILED_INSTALLATION, 'FreeSO' ), 100
+      strFormat( locale.current.FSO_FAILED_INSTALLATION, 'DiscoSO' ), 100
     );
   }
 
