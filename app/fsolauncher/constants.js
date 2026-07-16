@@ -100,13 +100,13 @@ const darkThemes = [
 ];
 const components = {
   'TSO': 'The Sims Online',
-  'FSO': 'FreeSO',
+  'FSO': 'DiscoSO',
   'OpenAL': 'OpenAL',
   'NET': '.NET Framework',
   'RMS': 'Remesh Package',
   'Simitone': 'Simitone for Windows',
   'Mono': 'Mono Runtime',
-  'MacExtras': 'FreeSO MacExtras',
+  'MacExtras': 'DiscoSO MacExtras',
   'SDL': 'SDL2'
 };
 const versionChecks = {
@@ -123,12 +123,12 @@ const links = {
 };
 const releases = {
   simitoneUrl: 'https://api.github.com/repos/riperiperi/Simitone/releases/latest',
-  fsoGithubUrl: 'https://api.github.com/repos/riperiperi/FreeSO/releases/latest',
+  fsoGithubUrl: '', // DiscoSO ships the client from resourceCentral.DiscoSO
   fsoApiUrl: '',
 };
 const resourceCentral = {
   'TheSimsOnline': 'https://archive.org/download/tso-fileplanet/TSO_Installer_v1.1239.1.0.zip',
-  'FreeSO': 'https://tso.thedisco.zone/site/downloads/freeso-client.zip',
+  'DiscoSO': 'https://tso.thedisco.zone/site/downloads/freeso-client.zip',
   '3DModels': 'https://tso.thedisco.zone/launcher/remeshes.zip',
   'Simitone': '',
   'Mono': 'https://download.mono-project.com/archive/6.12.0/macos-10-universal/MonoFramework-MDK-6.12.0.206.macos10.xamarin.universal.pkg',
@@ -155,14 +155,14 @@ const temp = {
   }
 };
 const registry = {
-  ociName: 'FreeSO Game',
+  ociName: 'DiscoSO Game',
   paths: {
     'TSO': process.platform === 'win32' ?
       'HKLM\\SOFTWARE\\Maxis\\The Sims Online' :
       `${appData}/GameComponents/The Sims Online/TSOClient/TSOClient.exe`,
 
     'FSO': process.platform === 'win32' ?
-      'HKLM\\SOFTWARE\\Rhys Simpson\\FreeSO' : `${appData}/GameComponents/FreeSO/FreeSO.exe`,
+      'HKLM\\SOFTWARE\\Rhys Simpson\\FreeSO' : `${appData}/GameComponents/DiscoSO/FreeSO.exe`,
 
     'TS1': process.platform === 'win32' ?
       'HKLM\\SOFTWARE\\Maxis\\The Sims' : `${appData}/GameComponents/The Sims/Sims.exe`,
@@ -181,11 +181,11 @@ const registry = {
     'TSO': [
       'C:/Program Files/Maxis/The Sims Online/TSOClient/TSOClient.exe',
       'C:/Program Files/The Sims Online/TSOClient/TSOClient.exe',
-      'C:/Program Files/FreeSO Game/The Sims Online/TSOClient/TSOClient.exe'
+      'C:/Program Files/DiscoSO Game/The Sims Online/TSOClient/TSOClient.exe'
     ],
     'FSO': [
-      'C:/Program Files/FreeSO/FreeSO.exe',
-      'C:/Program Files/FreeSO Game/FreeSO/FreeSO.exe'
+      'C:/Program Files/DiscoSO/FreeSO.exe',
+      'C:/Program Files/DiscoSO Game/FreeSO/FreeSO.exe'
     ],
     'Simitone': [
       'C:/Program Files/Simitone for Windows/Simitone.Windows.exe',
@@ -204,8 +204,8 @@ const registry = {
       `${homeDir}/Documents/The Sims Online/TSOClient/TSOClient.exe`,
     ],
     'FSO': [
-      `${appData}/GameComponents/FreeSO/FreeSO.exe`,
-      `${homeDir}/Documents/FreeSO/FreeSO.exe`,
+      `${appData}/GameComponents/DiscoSO/FreeSO.exe`,
+      `${homeDir}/Documents/DiscoSO/FreeSO.exe`,
     ],
     'Simitone': [
       `${appData}/GameComponents/Simitone for Windows/Simitone.Windows.exe`,
