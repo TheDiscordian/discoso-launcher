@@ -82,7 +82,7 @@ class MonoInstaller {
   pacmanInstall() {
     this.createProgressItem( locale.current.INS_MONO_DESCR_LONG, 100 );
     return new Promise( ( resolve, reject ) => {
-      const command = 'pacman -Syu --noconfirm mono';
+      const command = 'pacman -Sy --noconfirm mono';
       sudo.exec( command, ( error, stdout, stderr ) => {
         if ( error ) {
           console.error( 'error trying to install mono on arch', error );
