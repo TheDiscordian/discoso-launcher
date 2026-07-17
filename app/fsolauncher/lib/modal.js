@@ -587,7 +587,7 @@ class Modal {
     if ( isSimitone ) {
       str2 = str2
         .replace( 'FreeSO.exe', 'Simitone.Windows.exe' )
-        .replace( 'FreeSO', 'Simitone' );
+        .replace( 'DiscoSO', 'Simitone' );
     }
     Modal.getIPC().sendErrorModal(
       locale.current.MODAL_FAILED_LAUNCH,

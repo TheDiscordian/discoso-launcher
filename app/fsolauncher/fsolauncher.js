@@ -974,7 +974,7 @@ class FSOLauncher {
     }
 
     const toastText = isSimitone
-      ? locale.current.TOAST_LAUNCHING.replace( 'FreeSO', 'Simitone' )
+      ? locale.current.TOAST_LAUNCHING.replace( 'DiscoSO', 'Simitone' )
       : locale.current.TOAST_LAUNCHING;
     const toast = new Toast( toastText );
     const args = [];

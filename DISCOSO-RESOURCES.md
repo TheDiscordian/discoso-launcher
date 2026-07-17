@@ -21,4 +21,4 @@ where each resource points for DiscoSO, and what still needs doing.
 ## Mac / Linux support
 - **MacExtras** (native MonoGame/SDL libs so the client runs under Mono) — mirrored from `freeso.org/stuff/macextras.zip` to `https://tso.thedisco.zone/launcher/macextras.zip`. **Required for the Linux install** (`fso.js` pulls it on Linux/Mac).
 - **Mono** — Linux/Arch install it from the distro (`apt install mono-complete` / `pacman -S mono`); macOS downloads the official `download.mono-project.com` pkg.
-- **SDL2** — Linux/Arch from the distro (`libsdl2` on Debian; on Arch/CachyOS already provided, incl. via `sdl2-compat`, at `/usr/lib/libSDL2-2.0.so.0` — detected, not reinstalled); macOS from the official libsdl-org dmg. Pacman installs use `-Sy` (no forced `-Syu` upgrade).
+- **SDL2** — Linux/Arch from the distro (`libsdl2` on Debian; on Arch/CachyOS the system already provides it, incl. via `sdl2-compat`, at `/usr/lib/libSDL2-2.0.so.0` — detected, not reinstalled); macOS from the official libsdl-org dmg. Pacman installs use `-Sy` (no forced `-Syu` system upgrade).
