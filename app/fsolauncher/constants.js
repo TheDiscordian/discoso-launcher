@@ -116,10 +116,10 @@ const versionChecks = {
 };
 const links = {
   updateWizardUrl: 'https://tso.thedisco.zone/#play',
-  repoNewIssueUrl: 'https://github.com/ItsSim/fsolauncher/issues/new/choose',
-  repoViewIssuesUrl: 'https://github.com/ItsSim/fsolauncher/issues',
-  repoDocsUrl: 'https://github.com/ItsSim/fsolauncher/wiki',
-  repoUrl: 'https://github.com/ItsSim/fsolauncher',
+  repoNewIssueUrl: 'https://github.com/TheDiscordian/discoso-launcher/issues/new',
+  repoViewIssuesUrl: 'https://github.com/TheDiscordian/discoso-launcher/issues',
+  repoDocsUrl: 'https://github.com/TheDiscordian/discoso-launcher',
+  repoUrl: 'https://github.com/TheDiscordian/discoso-launcher',
 };
 const releases = {
   simitoneUrl: 'https://api.github.com/repos/riperiperi/Simitone/releases/latest',
