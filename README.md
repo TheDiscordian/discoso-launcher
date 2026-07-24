@@ -14,6 +14,10 @@ DiscoSO Launcher is a fork of the excellent **[FreeSO Launcher](https://github.c
 
 Every change we made is documented in **[DISCOSO-RESOURCES.md](./DISCOSO-RESOURCES.md)**, and the full diff against upstream is visible in this fork's commit history. All credit for the launcher itself belongs to the FreeSO Launcher authors. 💚
 
+## Related repositories
+
+- **[DiscoSO](https://github.com/TheDiscordian/DiscoSO)** — the game engine and server this launcher connects to.
+
 ## Downloads
 
 Grab the latest build (Windows and Linux) from **[tso.thedisco.zone](https://tso.thedisco.zone)**.
