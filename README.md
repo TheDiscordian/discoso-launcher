@@ -2,7 +2,7 @@
 
 The official launcher for **[DiscoSO](https://tso.thedisco.zone)** — a free, community-run revival of *The Sims Online*. It downloads the game and the client for you and connects you straight to the DiscoSO server. No files to hunt down, no server address to type. 🎉
 
-👉 **To play:** create a free account at **[tso.thedisco.zone](https://tso.thedisco.zone)**, download the launcher, and move into Starlight Crater. 🏡
+👉 **To play:** create a free account at **[tso.thedisco.zone](https://tso.thedisco.zone)**, download the launcher, and move into Starlight City. 🏡
 
 ## About this fork
 
