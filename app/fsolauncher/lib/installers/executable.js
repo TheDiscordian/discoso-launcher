@@ -9,9 +9,15 @@ class ExecutableInstaller {
    */
   run( file, options ) {
     return new Promise( ( resolve, reject ) => {
-      const spawnOptions = { cwd: 'bin' };
+      // `cwd` only sets the CHILD's directory - the executable itself is resolved against the
+      // launcher's own directory and PATH, so `bin` has to be part of the path we pass in.
+      // `bin` sits beside the packaged executable, outside the asar.
+      const path = require( 'path' );
+      const binDir = path.join( path.dirname( require( 'electron' ).app.getPath( 'exe' ) ), 'bin' );
+      const target = path.join( binDir, file );
+      const spawnOptions = { cwd: binDir };
       const args = options || [];
-      const child = require( 'child_process' ).spawn( file, args, spawnOptions );
+      const child = require( 'child_process' ).spawn( target, args, spawnOptions );
       console.info( 'executing', { file, args, spawnOptions } );
       child.on( 'close', code => {
         console.info( file, { args, spawnOptions, code } );

@@ -5,11 +5,12 @@ const {
   versionChecks,
   version,
   appData,
+  winGamesDir,
   settingsPath,
   darkThemes,
   defaultRefreshRate,
   releases: { simitoneUrl },
-  links: { updateWizardUrl },
+  links: { updateWizardUrl, netRuntimeUrl },
   defaultGameLanguage
 } = require( './constants' );
 
@@ -648,9 +649,16 @@ class FSOLauncher {
    * @returns {Promise<boolean>}
    */
   async handleExecutableInstall( componentCode, options ) {
+    if ( componentCode === 'NET' ) {
+      // The bundled installer is 4.6, older than the 4.7.2 the game needs, so send the user
+      // to Microsoft's current runtime download instead of installing a version that cannot
+      // run the game.
+      shell.openExternal( netRuntimeUrl );
+      return false;
+    }
     const runner = require( './lib/installers/executable' );
     const installer = new runner();
-    const file = componentCode === 'NET' ? 'NDP46-KB3045560-Web.exe' : 'oalinst.exe';
+    const file = 'oalinst.exe';
     let cmdOptions;
     if ( options.fullInstall ) {
       cmdOptions = componentCode === 'NET' ? [ '/q', '/norestart' ]  : [ '/SILENT' ];
@@ -699,10 +707,9 @@ class FSOLauncher {
         // and not ~/Documents, to avoid iCloud sync issues
         return appData + '/GameComponents/' + this.getPrettyName( componentCode );
       }
-      if ( componentCode == 'TSO' ) {
-        return 'C:/Program Files/Maxis/' + this.getPrettyName( componentCode );
-      }
-      return 'C:/Program Files/' + this.getPrettyName( componentCode );
+      // This branch runs when we could NOT get registry access, i.e. we are not elevated.
+      // Program Files needs elevation to write, so install somewhere the user owns.
+      return winGamesDir + '/' + this.getPrettyName( componentCode );
     }
   }
 
