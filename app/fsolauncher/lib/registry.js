@@ -1,4 +1,4 @@
-const { appData } = require( '../constants' );
+const { settingsPath } = require( '../constants' );
 const { captureWithSentry, normalizePathSlashes } = require( './utils' );
 const { createKey, keyExists, deleteKey, readValue, updateValue } = require( './winreg' );
 const { paths, fallbacks: fb } = require( '../constants' ).registry;
@@ -139,7 +139,7 @@ async function createGameEntry( updateConfig, installDir ) {
     return;
   }
   try {
-    await updateValue( 'HKLM\\SOFTWARE\\Rhys Simpson\\FreeSO', 'InstallDir', installDir );
+    await updateValue( 'HKLM\\SOFTWARE\\TheDiscordian\\DiscoSO', 'InstallDir', installDir );
   } catch ( err ) {
     console.error( err );
   }
@@ -169,7 +169,7 @@ async function getLocalRegistry() {
      * @type {UserSettings}
      */
     const userSettings = require( 'ini' ).parse( await require( 'fs-extra' )
-      .readFile( appData + '/FSOLauncher.ini', 'utf-8' ) );
+      .readFile( settingsPath, 'utf-8' ) );
 
     return userSettings.LocalRegistry || {};
   } catch ( err ) {

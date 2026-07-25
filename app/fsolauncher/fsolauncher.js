@@ -5,6 +5,7 @@ const {
   versionChecks,
   version,
   appData,
+  settingsPath,
   darkThemes,
   defaultRefreshRate,
   releases: { simitoneUrl },
@@ -1095,7 +1096,7 @@ class FSOLauncher {
     const ini = require( 'ini' );
     try {
       await fs.writeFile(
-        appData + '/FSOLauncher.ini',
+        settingsPath,
         ini.stringify( this.userSettings )
       );
       console.info( 'persist', this.userSettings );

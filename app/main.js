@@ -10,6 +10,8 @@ const compilePugFiles = require( './fsolauncher/lib/pug-compiler' );
 
 const {
   appData,
+  settingsPath,
+  legacySettingsPath,
   version,
   darkThemes,
   resourceCentral,
@@ -83,11 +85,23 @@ let trayIcon;
 let userSettings;
 
 try {
-  // Load the FSOLauncher.ini file and make it available for the launcher
-  userSettings = ini.parse( fs.readFileSync( appData + '/FSOLauncher.ini', 'utf-8' ) );
+  // Load our settings file and make it available for the launcher
+  userSettings = ini.parse( fs.readFileSync( settingsPath, 'utf-8' ) );
 } catch ( err ) {
-  // The FSOLauncher.ini file does not exist, create a new one with
-  // predefined values
+  // Adopt settings from the older shared file, but only when this install owns the game
+  // directory beside it - otherwise that file belongs to FreeSO Launcher alone
+  try {
+    if ( fs.existsSync( appData + '/GameComponents/DiscoSO' ) ) {
+      userSettings = ini.parse( fs.readFileSync( legacySettingsPath, 'utf-8' ) );
+      fs.writeFileSync( settingsPath, ini.stringify( userSettings ), 'utf-8' );
+      console.info( 'adopted settings from', legacySettingsPath );
+    }
+  } catch ( migrateErr ) {
+    console.error( 'could not adopt previous settings', migrateErr );
+  }
+}
+if ( ! userSettings ) {
+  // No settings file yet, create one with predefined values
   userSettings = {
     Launcher: {
       Theme: 'auto',
@@ -101,8 +115,7 @@ try {
       Language: defaultGameLanguage
     }
   };
-  // Write the new FSOLauncher.ini to disk
-  fs.writeFileSync( appData + '/FSOLauncher.ini', ini.stringify( userSettings ), 'utf-8' );
+  fs.writeFileSync( settingsPath, ini.stringify( userSettings ), 'utf-8' );
 }
 console.info( 'loaded userSettings', userSettings );
 

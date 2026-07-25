@@ -50,6 +50,10 @@ const appData = ( () => {
   }
   return '.';
 } )();
+// on Linux both launchers share ~/.fsolauncher, and FSOLauncher.ini is FreeSO Launcher's
+// file - writing it there means the two overwrite each other's settings and LocalRegistry
+const settingsPath = `${appData}/DiscoSOLauncher.ini`;
+const legacySettingsPath = `${appData}/FSOLauncher.ini`;
 const gameLanguages = {
   English: 0,
   French: 3,
@@ -161,8 +165,10 @@ const registry = {
       'HKLM\\SOFTWARE\\Maxis\\The Sims Online' :
       `${appData}/GameComponents/The Sims Online/TSOClient/TSOClient.exe`,
 
+    // our own key: FreeSO Launcher owns Rhys Simpson\FreeSO, and both writing it means
+    // whichever installed last owns the other's install pointer
     'FSO': process.platform === 'win32' ?
-      'HKLM\\SOFTWARE\\Rhys Simpson\\FreeSO' : `${appData}/GameComponents/DiscoSO/FreeSO.exe`,
+      'HKLM\\SOFTWARE\\TheDiscordian\\DiscoSO' : `${appData}/GameComponents/DiscoSO/FreeSO.exe`,
 
     'TS1': process.platform === 'win32' ?
       'HKLM\\SOFTWARE\\Maxis\\The Sims' : `${appData}/GameComponents/The Sims/Sims.exe`,
@@ -221,6 +227,8 @@ const registry = {
 module.exports = {
   homeDir,
   appData,
+  settingsPath,
+  legacySettingsPath,
   gameLanguages,
   isTestMode,
   fileLogEnabled,
