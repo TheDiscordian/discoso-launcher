@@ -45,7 +45,7 @@ module.exports = () => {
     installDir = process.platform === 'win32' ? 'C:\\Users\\Public\\TéstFõldér' :
       appData + '/GameComponents';
 
-    fs.existsSync( `${appData}/FSOLauncher.ini` ) && fs.unlinkSync( `${appData}/FSOLauncher.ini` );
+    fs.existsSync( `${appData}/DiscoSOLauncher.ini` ) && fs.unlinkSync( `${appData}/DiscoSOLauncher.ini` );
     console.info( '[beforeAll] exeDir', exeDir );
     console.info( '[beforeAll] appInfo', appInfo );
     console.info( '[beforeAll] appData', appData );

@@ -10,6 +10,6 @@ test.describe( 'main', () => {
   } );
 
   test( 'config file is present', async () => {
-    expect( await fs.exists( T.getAppData() + '/FSOLauncher.ini' ) ).toBeTruthy();
+    expect( await fs.exists( T.getAppData() + '/DiscoSOLauncher.ini' ) ).toBeTruthy();
   } );
 } );
