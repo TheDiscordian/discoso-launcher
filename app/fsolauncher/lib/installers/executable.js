@@ -33,7 +33,22 @@ class ExecutableInstaller {
     return new Promise( ( resolve, reject ) => {
       const spawnOptions = { cwd: path.dirname( target ) };
       const args = options || [];
-      const child = require( 'child_process' ).spawn( target, args, spawnOptions );
+      let command = target, commandArgs = args;
+
+      if ( process.platform === 'win32' ) {
+        // These installers declare requireAdministrator, and CreateProcess refuses to start
+        // such a binary from a process that is not elevated - Node surfaces that refusal as
+        // EACCES, not as anything elevation-shaped. Go through Start-Process -Verb RunAs so
+        // Windows raises the UAC prompt instead of failing.
+        const quote = s => `'${String( s ).replace( /'/g, "''" )}'`;
+        const argList = args.length ? ` -ArgumentList ${args.map( quote ).join( ',' )}` : '';
+        command = 'powershell';
+        commandArgs = [ '-NoProfile', '-NonInteractive', '-Command',
+          `$p = Start-Process -FilePath ${quote( target )}${argList} -Verb RunAs -Wait -PassThru; exit $p.ExitCode` ];
+        spawnOptions.windowsHide = true;
+      }
+
+      const child = require( 'child_process' ).spawn( command, commandArgs, spawnOptions );
       console.info( 'executing', { file, args, spawnOptions } );
       child.on( 'close', code => {
         console.info( file, { args, spawnOptions, code } );
