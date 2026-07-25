@@ -215,12 +215,13 @@ class Modal {
   static async showChooseDirectory( componentName, window ) {
     let defaultPath = null;
     if ( process.platform === 'win32' ) {
+      // Offer a directory the user can write to. Program Files needs elevation, so defaulting
+      // there sends most people straight into a permissions error.
       try {
-        const winDefaultPath = await require( 'fs-extra' )
-          .stat( 'C:\\Program Files' );
-        if ( winDefaultPath.isDirectory() ) {
-          defaultPath = 'C:\\Program Files';
-        }
+        const fs = require( 'fs-extra' );
+        const { winGamesDir } = require( '../constants' );
+        await fs.ensureDir( winGamesDir );
+        defaultPath = winGamesDir.replace( /\//g, '\\' );
       } catch ( err ) {
         captureWithSentry( err, { componentName } );
         console.error( err );

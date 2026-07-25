@@ -50,6 +50,10 @@ const appData = ( () => {
   }
   return '.';
 } )();
+// Where games go on Windows without elevation. Components are siblings here so the client's
+// own locator finds TSO via its relative '../The Sims Online/TSOClient/' check, with no
+// registry write and no admin rights needed.
+const winGamesDir = `${process.env.LOCALAPPDATA || `${homeDir}/AppData/Local`}/DiscoSO/GameComponents`;
 // on Linux both launchers share ~/.fsolauncher, and FSOLauncher.ini is FreeSO Launcher's
 // file - writing it there means the two overwrite each other's settings and LocalRegistry
 const settingsPath = `${appData}/DiscoSOLauncher.ini`;
@@ -124,6 +128,7 @@ const links = {
   repoViewIssuesUrl: 'https://github.com/TheDiscordian/discoso-launcher/issues',
   repoDocsUrl: 'https://github.com/TheDiscordian/discoso-launcher',
   repoUrl: 'https://github.com/TheDiscordian/discoso-launcher',
+  netRuntimeUrl: 'https://dotnet.microsoft.com/download/dotnet-framework/net472',
 };
 const releases = {
   simitoneUrl: 'https://api.github.com/repos/riperiperi/Simitone/releases/latest',
@@ -227,6 +232,7 @@ const registry = {
 module.exports = {
   homeDir,
   appData,
+  winGamesDir,
   settingsPath,
   legacySettingsPath,
   gameLanguages,

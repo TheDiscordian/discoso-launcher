@@ -4,6 +4,9 @@ const { createKey, keyExists, deleteKey, readValue, updateValue } = require( './
 const { paths, fallbacks: fb } = require( '../constants' ).registry;
 const fs = require( 'fs-extra' );
 
+// .NET Framework 4.7.2 - the minimum the game's assemblies target.
+const NET_MIN_RELEASE = 461808;
+
 async function hasRegistryAccess() {
   if ( process.platform != 'win32' ) {
     return false;
@@ -81,8 +84,17 @@ async function getInstallStatus( code ) {
       break;
     }
     case 'NET':
-      // By now, .NET will not be an issue
-      isInstalled = true;
+      // The game targets .NET Framework 4.7.2, so anything older cannot run it. The Release
+      // value under NDP\v4\Full is the documented way to identify the installed version;
+      // 461808 is 4.7.2. Windows 10 1803 and newer ship it, older Windows may not.
+      try {
+        // reg.exe prints REG_DWORD values in hex ("0x81081"), so let Number() pick the base.
+        const raw = String( await readValue( regPath + '\\v4\\Full', 'Release' ) ).trim();
+        const release = Number( raw );
+        isInstalled = Number.isFinite( release ) && release >= NET_MIN_RELEASE;
+      } catch ( err ) {
+        isInstalled = false;
+      }
       break;
     case 'OpenAL':
       isInstalled = await keyExists( regPath );
