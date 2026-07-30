@@ -999,9 +999,10 @@ class FSOLauncher {
       ? this.userSettings.Game.GraphicsMode : 'ogl';
     if ( [ 'darwin', 'linux' ].includes( process.platform ) ) graphicsMode = 'ogl';
     args.push( `-${graphicsMode}` );
-    // 3d is forced off when in SW
-    if ( this.userSettings.Game[ '3DMode' ] === '1' && ( this.userSettings.Game.GraphicsMode != 'sw' || isSimitone ) ) {
-      args.push( '-3d' );
+    // the client enables 3D itself and cycles the view modes in-game, so the launcher only
+    // has to say when NOT to. software rendering cannot carry the 3D architecture.
+    if ( ! isSimitone && this.userSettings.Game.GraphicsMode === 'sw' ) {
+      args.push( '-2d' );
     }
     if ( isSimitone && useVolcanic ) {
       // w Simitone you need to launch Simitone.Windows.exe with the -ide flag
